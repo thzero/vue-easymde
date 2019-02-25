@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import markdownEditor from 'vue-simplemde/src/markdown-editor'
+  import markdownEditor from 'vue-easymde/src/markdown-editor'
 
   // Base example
   export default {
@@ -47,13 +47,13 @@
       }
     },
     computed: {
-      simplemde () {
-        return this.$refs.markdownEditor.simplemde
+      easymde () {
+        return this.$refs.markdownEditor.easymde
       }
     },
     mounted () {
-      console.log(this.simplemde)
-      this.simplemde.togglePreview()
+      console.log(this.easymde)
+      this.easymde.togglePreview()
 
       // 'change' envent has bound, via @input attache an event listener
       // You can attache events in this [list](https://codemirror.net/doc/manual.html#events) yourself if necessary
@@ -66,13 +66,13 @@
 
       // some useful methods
       this.$refs.markdownEditor.initialize() // init
-      this.simplemde.toTextArea()
-      this.simplemde.isPreviewActive() // returns boolean
-      this.simplemde.isSideBySideActive() // returns boolean
-      this.simplemde.isFullscreenActive() // returns boolean
-      this.simplemde.clearAutosavedValue() // no returned value
-      this.simplemde.markdown(this.content) // returns parsed html
-      this.simplemde.codemirror.refresh() // refresh codemirror
+      this.easymde.toTextArea()
+      this.easymde.isPreviewActive() // returns boolean
+      this.easymde.isSideBySideActive() // returns boolean
+      this.easymde.isFullscreenActive() // returns boolean
+      this.easymde.clearAutosavedValue() // no returned value
+      this.easymde.markdown(this.content) // returns parsed html
+      this.easymde.codemirror.refresh() // refresh codemirror
     },
     methods: {
       handleInput () {
@@ -83,5 +83,5 @@
 </script>
 
 <style>
-  @import '~simplemde/dist/simplemde.min.css';
+  @import '~easymde/dist/easymde.min.css';
 </style>

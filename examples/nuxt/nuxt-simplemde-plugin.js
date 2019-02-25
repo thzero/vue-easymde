@@ -1,4 +1,4 @@
-import Vue from 'vue'
-import VueSimplemde from 'vue-simplemde'
+import Vue from 'vue';
+import VueEasymde from 'vue-easymde';
 
-Vue.use(VueSimplemde)
+Vue.use(VueEasymde);
