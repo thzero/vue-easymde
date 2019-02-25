@@ -5,13 +5,11 @@
 
 import markdownEditor from './src/markdown-editor.vue';
 
-export default  {
+export default {
   markdownEditor,
   install(Vue) {
     Vue.component('markdown-editor', markdownEditor);
   },
 };
 
-export {
-  markdownEditor,
-};
+export { markdownEditor };
