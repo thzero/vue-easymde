@@ -1,8 +1,8 @@
 {
-  "name": "vue-simplemde",
-  "version": "0.5.1",
-  "description": "SimpleMDE - Markdown Editor component for Vue.js",
-  "main": "dist/vue-simplemde.min.js",
+  "name": "vue-easymde",
+  "version": "0.1.1",
+  "description": "EasyMDE - Markdown Editor component for Vue.js",
+  "main": "dist/vue-easymde.min.js",
   "scripts": {
     "build": "npm run build:dev && npm run build:prod",
     "build:dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
@@ -12,11 +12,12 @@
   "keywords": [
     "Vue",
     "SimpleMDE",
+    "EasyMDE",
     "Markdown"
   ],
   "author": {
-    "name": "F-loat",
-    "email": "chaimaoyuan@foxmail.com"
+    "name": "Ilya Nikulin",
+    "email": "ilia.nikulin@gmail.com"
   },
   "files": [
     "dist",
@@ -24,7 +25,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/F-loat/vue-simplemde.git"
+    "url": "https://github.com/NikulinIlya/vue-easymde.git"
   },
   "license": "MIT",
   "dependencies": {
