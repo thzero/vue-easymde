@@ -144,8 +144,8 @@ $ yarn add simplemde-theme-base
 
 - [Simple Example](./examples/index.vue)
 - [Nuxt Example](./examples/nuxt)
-- [Demo Page](https://f-loat.github.io/vue-simplemde/)
-- [Demo Source](https://github.com/F-loat/vue-simplemde/tree/gh-pages)
+- [Demo Page](https://NikulinIlya.github.io/vue-easymde/)
+- [Demo Source](https://github.com/NikulinIlya/vue-easymde/tree/gh-pages)
 
 ## Dependencies
 
