@@ -7,17 +7,17 @@ module.exports = {
   entry: './index.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: env === 'production' ? 'vue-simplemde.min.js' : 'vue-simplemde.js',
-    library: 'VueSimpleMDE',
+    filename: env === 'production' ? 'vue-easymde.min.js' : 'vue-easymde.js',
+    library: 'VueEasyMDE',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
   externals: {
     simplemde: {
-      commonjs: 'simplemde',
-      commonjs2: 'simplemde',
-      amd: 'simplemde',
-      root: 'SimpleMDE',
+      commonjs: 'easymde',
+      commonjs2: 'easymde',
+      amd: 'easymde',
+      root: 'EasyMDE',
     },
     marked: 'marked',
   },
@@ -44,6 +44,7 @@ module.exports = {
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.esm.js',
+      easymde: 'easymde',
     },
   },
   devServer: {
