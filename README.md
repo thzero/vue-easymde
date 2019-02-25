@@ -1,8 +1,9 @@
-# Vue-SimpleMDE
+# Vue-EasyMDE
+
 > Markdown Editor component for Vue.js. Support only vue2.x.
 
-[![npm package](https://img.shields.io/npm/v/vue-simplemde.svg)](https://npmjs.org/package/vue-simplemde)
-[![npm downloads](http://img.shields.io/npm/dm/vue-simplemde.svg)](https://npmjs.org/package/vue-simplemde)
+[![npm package](https://img.shields.io/npm/v/vue-easymde.svg)](https://npmjs.org/package/vue-easymde)
+[![npm downloads](http://img.shields.io/npm/dm/vue-easymde.svg)](https://npmjs.org/package/vue-easymde)
 
 # Use Setup
 
@@ -10,54 +11,57 @@
 
 ## Install
 
-``` bash
-npm install vue-simplemde --save
+```bash
+npm install vue-easymde --save
+
+yarn add vue-easymde
 ```
 
 ## Use
 
-* Internal reference in a single component
+- Internal reference in a single component
 
-``` vue
+```vue
 <template>
-  <markdown-editor v-model="content" ref="markdownEditor"></markdown-editor>
+ <markdown-editor v-model="content" ref="markdownEditor"></markdown-editor>
 </template>
 
 <script>
-  import markdownEditor from 'vue-simplemde/src/markdown-editor'
+ import markdownEditor from "vue-easymde/src/markdown-editor";
 
-  export default {
-    components: {
-      markdownEditor
-    }
+ export default {
+  components: {
+    markdownEditor
   }
+ };
 </script>
 
 <style>
-  @import '~simplemde/dist/simplemde.min.css';
+ @import "~easymde/dist/easymde.min.css";
 </style>
 ```
 
-* Global reference
+- Global reference
 
-``` javascript
-import Vue from 'vue'
-import VueSimplemde from 'vue-simplemde'
-import 'simplemde/dist/simplemde.min.css'
+```javascript
+import Vue from "vue";
+import VueEasymde from "vue-easymde";
+import "easymde/dist/easymde.min.css";
 
-Vue.use(VueSimplemde)
+Vue.use(VueEasymde);
 ```
 
 ## Props
-| property | type | default | describe |
-| ----| ----- | ----- | ---- |
-| value | String | None | Initial value, v-model binding can be used |
-| name | String | None | The name of the control. |
-| preview-class | String | None | Custom preview style class |
-| autoinit | Boolean | true | Automatic initialization |
-| highlight | Boolean | false | Is it open to highlight |
-| sanitize | Boolean | false | HTML that does not render input after opening |
-| configs | Object | {} | [SimpleMDE's config](#configuration) |
+
+| property      | type    | default | describe                                      |
+| ------------- | ------- | ------- | --------------------------------------------- |
+| value         | String  | None    | Initial value, v-model binding can be used    |
+| name          | String  | None    | The name of the control.                      |
+| preview-class | String  | None    | Custom preview style class                    |
+| autoinit      | Boolean | true    | Automatic initialization                      |
+| highlight     | Boolean | false   | Is it open to highlight                       |
+| sanitize      | Boolean | false   | HTML that does not render input after opening |
+| configs       | Object  | {}      | [EasyMDE's config](#configuration)          |
 
 ## Markdown style
 > e.g. use Github's markdown style
@@ -65,19 +69,21 @@ Vue.use(VueSimplemde)
 [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
 
 ### install
-``` bash
+```bash
 $ npm install --save github-markdown-css
+
+$ yarn add github-markdown-css
 ```
 
 ### use
-``` vue
+```vue
 <template>
-  <markdown-editor preview-class="markdown-body"></markdown-editor>
+ <markdown-editor preview-class="markdown-body"></markdown-editor>
 </template>
 
 <style>
-  @import '~simplemde/dist/simplemde.min.css';
-  @import '~github-markdown-css';
+ @import "~easymde/dist/easymde.min.css";
+ @import "~github-markdown-css";
 </style>
 ```
 
@@ -86,62 +92,69 @@ $ npm install --save github-markdown-css
 ### install
 ```
 $ npm install --save highlight.js
+
+$ yarn add highlight.js
 ```
 
 ### use
-``` vue
+```vue
 <template>
-  <markdown-editor :highlight="true"></markdown-editor>
+ <markdown-editor :highlight="true"></markdown-editor>
 </template>
 
 <script>
-  import hljs from 'highlight.js';
+ import hljs from "highlight.js";
 
-  window.hljs = hljs;
+ window.hljs = hljs;
 </script>
 
 <style>
-  @import '~simplemde/dist/simplemde.min.css';
-  @import '~highlight.js/styles/atom-one-dark.css';
-  /* Highlight theme list: https://github.com/isagalaev/highlight.js/tree/master/src/styles */
+ @import "~easymde/dist/easymde.min.css";
+ @import "~highlight.js/styles/atom-one-dark.css";
+ /* Highlight theme list: https://github.com/isagalaev/highlight.js/tree/master/src/styles */
 </style>
 ```
 
 ## Editor Theme ([simplemde-theme-base](https://github.com/xcatliu/simplemde-theme-base/wiki/List-of-themes))
+
 > e.g. use simplemde-theme-base theme
 
 ### install
 ```
 $ npm install --save simplemde-theme-base
+
+$ yarn add simplemde-theme-base
 ```
 
 ### use
-``` vue
+```vue
 <style>
-  @import '~simplemde-theme-base/dist/simplemde-theme-base.min.css';
+  @import "~simplemde-theme-base/dist/simplemde-theme-base.min.css";
   /* no need import simplemde.min.css */
 </style>
 ```
 
 ## Configuration
-> SimpleMD's config
+> Configuration is based on EasyMDE [config](https://github.com/Ionaru/easy-markdown-editor)
 
-* [中文](doc/configuration_zh.md)
-* [English](doc/configuration_en.md)
+- [English](doc/configuration_en.md)
+- [中文](doc/configuration_zh.md)
 
 ## Examples
 
-* [Simple Example](./examples/index.vue)
-* [Nuxt Example](./examples/nuxt)
-* [Demo Page](https://f-loat.github.io/vue-simplemde/)
-* [Demo Source](https://github.com/F-loat/vue-simplemde/tree/gh-pages)
+- [Simple Example](./examples/index.vue)
+- [Nuxt Example](./examples/nuxt)
+- [Demo Page](https://f-loat.github.io/vue-simplemde/)
+- [Demo Source](https://github.com/F-loat/vue-simplemde/tree/gh-pages)
 
 ## Dependencies
 
-* [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
+- [EasyMDE](https://github.com/Ionaru/easy-markdown-editor)
 
 ## Licence
 
-vue-simplemde is open source and released under the MIT Licence.
+vue-easymde is open source and released under the MIT Licence.
 
 Copyright (c) 2018 F-loat
+
+Copyright (c) 2019 Ilya Nikulin
