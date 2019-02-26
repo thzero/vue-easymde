@@ -273,20 +273,4 @@ easymde.isFullscreenActive(); // returns boolean
 easymde.clearAutosavedValue(); // no returned value
 ```
 
-#### Height
-
-To change the minimum height (before it starts auto-growing):
-
-```CSS
-.markdown-editor .CodeMirror, .markdown-editor .CodeMirror-scroll {
-  min-height: 200px;
-}
-```
-
-Or, you can keep the height static:
-
-```CSS
-.markdown-editor .CodeMirror {
-  height: 300px;
-}
-```
+[Back](../readme.md)

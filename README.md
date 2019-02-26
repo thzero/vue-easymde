@@ -1,6 +1,8 @@
 # Vue-EasyMDE
 
-> Markdown Editor component for Vue.js. Support only vue2.x.
+>[На русском](README.ru.md)
+
+> Markdown Editor component for Vue.js. Support only Vue2.x.
 
 [![npm package](https://img.shields.io/npm/v/vue-easymde.svg)](https://npmjs.org/package/vue-easymde)
 [![npm downloads](http://img.shields.io/npm/dm/vue-easymde.svg)](https://npmjs.org/package/vue-easymde)
@@ -138,6 +140,7 @@ $ yarn add simplemde-theme-base
 > Configuration is based on EasyMDE [config](https://github.com/Ionaru/easy-markdown-editor)
 
 - [English](doc/configuration_en.md)
+- [Русский](doc/configuration_ru.md)
 - [中文](doc/configuration_zh.md)
 
 ## Examples
