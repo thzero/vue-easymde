@@ -273,5 +273,3 @@ easymde.isSideBySideActive(); // returns boolean
 easymde.isFullscreenActive(); // returns boolean
 easymde.clearAutosavedValue(); // no returned value
 ```
-
-[Назад](../readme.ru.md)
