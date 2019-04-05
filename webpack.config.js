@@ -1,10 +1,13 @@
 const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const env = process.env.NODE_ENV;
 
 module.exports = {
   entry: './index.js',
+  mode: 'production',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: env === 'production' ? 'vue-easymde.min.js' : 'vue-easymde.js',
@@ -21,6 +24,21 @@ module.exports = {
     },
     marked: 'marked',
   },
+  optimization: {
+    minimizer: [
+      // we specify a custom UglifyJsPlugin here to get source maps in production
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: false,
+          ecma: 6,
+          mangle: true
+        },
+        sourceMap: true
+      })
+    ]
+  },
   module: {
     rules: [
       {
@@ -31,6 +49,13 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -54,6 +79,9 @@ module.exports = {
   performance: {
     hints: false,
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 };
 
 if (env === 'production') {
@@ -64,12 +92,12 @@ if (env === 'production') {
         NODE_ENV: '"production"',
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
+    /*new webpack.UglifyJsPlugin({
       sourceMap: true,
       compress: {
         warnings: false,
       },
-    }),
+    }),*/
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
