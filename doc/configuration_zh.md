@@ -145,7 +145,7 @@ horizontal-rule | drawHorizontalRule | 插入水平线<br>fa fa-minus
 preview | togglePreview | 预览<br>fa fa-eye no-disable
 side-by-side | toggleSideBySide | 全屏预览<br>fa fa-columns no-disable no-mobile
 fullscreen | toggleFullScreen | 全屏<br>fa fa-arrows-alt no-disable no-mobile
-guide | [跳转链接](https://simplemde.com/markdown-guide) | Markdown引导<br>fa fa-question-circle
+guide | [跳转链接](https://markdownguide.org/basic-syntax/) | Markdown引导<br>fa fa-question-circle
 
 使用`toolbar`选项自定义工具栏：
 
