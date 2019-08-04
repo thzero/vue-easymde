@@ -1,26 +1,26 @@
 <template>
   <div>
     <!-- use v-model control value -->
-    <markdown-editor v-model="content" ref="markdownEditor"></markdown-editor>
+    <vue-easyemde v-model="content" ref="markdownEditor" />
 
     <!-- use event control value -->
-    <markdown-editor :value="content" @input="handleInput"></markdown-editor>
+    <vue-easyemde :value="content" @input="handleInput" />
 
     <!-- add config -->
-    <markdown-editor :configs="configs"></markdown-editor>
+    <vue-easyemde :configs="configs" />
 
     <!-- disable auto init -->
-    <markdown-editor :autoinit="false"></markdown-editor>
+    <vue-easyemde :autoinit="false" />
   </div>
 </template>
 
 <script>
-  import markdownEditor from 'vue-easymde/src/markdown-editor'
+  import VueEasymde from 'vue-easymde/src/vue-easyemde'
 
   // Base example
   export default {
     components: {
-      markdownEditor
+        VueEasymde
     },
     data () {
       return {
@@ -35,7 +35,7 @@
   // Complete example
   export default {
     components: {
-      markdownEditor
+        VueEasymde
     },
     data () {
       return {
@@ -55,14 +55,14 @@
       console.log(this.easymde)
       this.easymde.togglePreview()
 
-      // 'change' envent has bound, via @input attache an event listener
+      // 'change' event has bound, via @input attache an event listener
       // You can attache events in this [list](https://codemirror.net/doc/manual.html#events) yourself if necessary
-      this.simplemde.codemirror.on('beforeChange', (instance, changeObj) => {
+      this.easymde.codemirror.on('beforeChange', (instance, changeObj) => {
         // do some things
       })
 
-      // remove SimpleMDE, when component destroy will invoke
-      this.simplemde = null
+      // remove EasyMDE, when component destroy will invoke
+      this.easymde = null
 
       // some useful methods
       this.$refs.markdownEditor.initialize() // init

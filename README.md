@@ -25,15 +25,15 @@ yarn add vue-easymde
 
 ```vue
 <template>
- <markdown-editor v-model="content" ref="markdownEditor"></markdown-editor>
+ <vue-easymde v-model="content" ref="markdownEditor" />
 </template>
 
 <script>
- import markdownEditor from "vue-easymde/src/markdown-editor";
+ import VueEasymde from "vue-easymde";
 
  export default {
   components: {
-    markdownEditor
+    VueEasymde
   }
  };
 </script>
@@ -50,7 +50,7 @@ import Vue from "vue";
 import VueEasymde from "vue-easymde";
 import "easymde/dist/easymde.min.css";
 
-Vue.use(VueEasymde);
+Vue.component('vue-easymde', VueEasymde)
 ```
 
 ## Props
@@ -80,7 +80,7 @@ $ yarn add github-markdown-css
 ### use
 ```vue
 <template>
- <markdown-editor preview-class="markdown-body"></markdown-editor>
+ <vue-easymde preview-class="markdown-body" />
 </template>
 
 <style>
@@ -101,7 +101,7 @@ $ yarn add highlight.js
 ### use
 ```vue
 <template>
- <markdown-editor :highlight="true"></markdown-editor>
+ <vue-easymde :highlight="true" />
 </template>
 
 <script>
