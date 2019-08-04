@@ -1,0 +1,22 @@
+<meta charset="utf-8">
+<title>VueEasyMDE demo</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.7.0/dist/easymde.min.css">
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/easymde@2.7.0/src/js/easymde.min.js"></script>
+
+<script src="./VueEasyMDE.umd.js"></script>
+
+
+<div id="app">
+  <demo></demo>
+</div>
+
+<script>
+new Vue({
+  components: {
+    demo: VueEasyMDE
+  }
+}).$mount('#app')
+</script>
