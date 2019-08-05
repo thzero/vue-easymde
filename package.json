@@ -1,6 +1,6 @@
 {
   "name": "vue-easymde",
-  "version": "0.1.7",
+  "version": "1.0.0",
   "description": "EasyMDE - Markdown Editor component for Vue.js",
   "main": "src/index.vue",
   "scripts": {
