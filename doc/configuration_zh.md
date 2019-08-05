@@ -26,6 +26,7 @@
   - **strikethrough**: 如果设置为 `false`将不对GFM语法进行解析，默认值为 `true`。
   - **underscoresBreakWords**: 如果设置为 `true`将使用下划线作为分隔符，默认值为 `false`。
 - **placeholder**: 自定义占位符。
+- **previewClass**: 激活时将应用于预览屏幕的字符串或字符串数组。 默认为 `"editor-preview"`.
 - **previewRender**: 自定义Markdown解析器，预览时调用。
 - **promptURLs**: 如果设置为 `true`将出现一个JS警告窗口来获取链接或图片的网址，默认值为 `false`。
 - **renderingConfig**: Markdown渲染配置。
@@ -75,6 +76,10 @@ export default {
           underscoresBreakWords: true
         },
         placeholder: 'Type here...',
+
+        previewClass: "my-custom-styling",
+	    previewClass: ["my-custom-styling", "more-custom-styling"],
+
         previewRender: function(plainText) {
           return customMarkdownParser(plainText) // 返回HTML自定义解析器
         },
