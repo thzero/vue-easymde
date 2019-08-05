@@ -3,30 +3,34 @@
     <div class="editor-wrap">
       <div class="editor">
         <h4 class="title">Default configuration & disable automatic initialization</h4>
-        <markdown-editor
+        <vue-easymde
           v-model="content"
           ref="markdownEditor"
-          :autoinit="false"></markdown-editor>
+          :autoinit="false"
+        />
       </div>
       <div class="editor">
         <h4 class="title">Turn on code highlighting & use github's markdown style</h4>
-        <markdown-editor
+        <vue-easymde
           v-model="content"
           :highlight="true"
-          preview-class="markdown-body"></markdown-editor>
+          preview-class="markdown-body"
+        />
       </div>
       <div class="editor theme">
         <h4 class="title">Custom code highlighting theme</h4>
-        <markdown-editor
+        <vue-easymde
           v-model="content"
           :highlight="true"
-          preview-class="markdown-body"></markdown-editor>
+          preview-class="markdown-body"
+        />
       </div>
       <div class="editor">
         <h4 class="title">Hide bottom statistics bar & edit toolbar</h4>
-        <markdown-editor
+        <vue-easymde
           v-model="content"
-          :configs="configs"></markdown-editor>
+          :configs="configs"
+        />
       </div>
     </div>
     <div class="button-wrap">
@@ -39,7 +43,7 @@
 </template>
 
 <script>
-import markdownEditor from 'vue-easymde/src/markdown-editor'
+import VueEasymde from 'vue-easymde/src/index.vue'
 import hljs from 'highlight.js'
 
 window.hljs = hljs
@@ -47,7 +51,7 @@ window.hljs = hljs
 export default {
   name: 'app',
   components: {
-    markdownEditor
+    VueEasymde
   },
   data () {
     return {
@@ -101,7 +105,6 @@ export default {
   .editor-wrap {
     width: 100%;
     max-width: 900px;
-    padding: 0 10px;
     float: left;
   }
   .editor {
@@ -111,7 +114,7 @@ export default {
   .title {
     text-align: center;
   }
-  .markdown-editor .CodeMirror {
+  .vue-easymde .CodeMirror {
     height: 200px;
   }
 
