@@ -5,103 +5,105 @@
 </template>
 
 <script>
-  import EasyMDE from 'easymde';
-  import marked from 'marked';
+// eslint-disable-next-line import/extensions
+import EasyMDE from 'easymde';
+// eslint-disable-next-line import/extensions
+import marked from 'marked';
 
-  export default {
-    name: 'vue-easymde',
-    props: {
-      value: String,
-      name: String,
-      previewClass: String,
-      autoinit: {
-        type: Boolean,
-        default() {
-          return true;
-        },
-      },
-      highlight: {
-        type: Boolean,
-        default() {
-          return false;
-        },
-      },
-      sanitize: {
-        type: Boolean,
-        default() {
-          return false;
-        },
-      },
-      configs: {
-        type: Object,
-        default() {
-          return {};
-        },
+export default {
+  name: 'vue-easymde',
+  props: {
+    value: String,
+    name: String,
+    previewClass: String,
+    autoinit: {
+      type: Boolean,
+      default() {
+        return true;
       },
     },
-    mounted() {
-      if (this.autoinit) this.initialize();
-    },
-    activated() {
-      const editor = this.easymde;
-      if (!editor) return;
-      const isActive = editor.isSideBySideActive() || editor.isPreviewActive();
-      if (isActive) editor.toggleFullScreen();
-    },
-    methods: {
-      initialize() {
-        const configs = Object.assign({
-          element: this.$el.firstElementChild,
-          initialValue: this.value,
-          renderingConfig: {},
-        }, this.configs);
-
-        // 同步 value 和 initialValue 的值 \ Synchronize the values of value and initialValue
-        if (configs.initialValue) {
-          this.$emit('input', configs.initialValue);
-        }
-
-        // 判断是否开启代码高亮 \ Determine whether to enable code highlighting
-        if (this.highlight) {
-          configs.renderingConfig.codeSyntaxHighlighting = true;
-        }
-
-        // 设置是否渲染输入的html \ Set whether to render the input html
-        marked.setOptions({ sanitize: this.sanitize });
-
-        // 实例化编辑器 \ Instantiated editor
-        this.easymde = new EasyMDE(configs);
-
-        // 添加自定义 previewClass \ Add a custom previewClass
-        const className = this.previewClass || '';
-        this.addPreviewClass(className);
-
-        // 绑定事件 \ Binding event
-        this.bindingEvents();
-      },
-      bindingEvents() {
-        this.easymde.codemirror.on('change', () => {
-          this.$emit('input', this.easymde.value());
-        });
-      },
-      addPreviewClass(className) {
-        const wrapper = this.easymde.codemirror.getWrapperElement();
-        const preview = document.createElement('div');
-        wrapper.nextSibling.className += ` ${className}`;
-        preview.className = `editor-preview ${className}`;
-        wrapper.appendChild(preview);
+    highlight: {
+      type: Boolean,
+      default() {
+        return false;
       },
     },
-    destroyed() {
-      this.easymde = null;
-    },
-    watch: {
-      value(val) {
-        if (val === this.easymde.value()) return;
-        this.easymde.value(val);
+    sanitize: {
+      type: Boolean,
+      default() {
+        return false;
       },
     },
-  };
+    configs: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
+  mounted() {
+    if (this.autoinit) this.initialize();
+  },
+  activated() {
+    const editor = this.easymde;
+    if (!editor) return;
+    const isActive = editor.isSideBySideActive() || editor.isPreviewActive();
+    if (isActive) editor.toggleFullScreen();
+  },
+  methods: {
+    initialize() {
+      const configs = Object.assign({
+        element: this.$el.firstElementChild,
+        initialValue: this.value,
+        renderingConfig: {},
+      }, this.configs);
+
+      // 同步 value 和 initialValue 的值 \ Synchronize the values of value and initialValue
+      if (configs.initialValue) {
+        this.$emit('input', configs.initialValue);
+      }
+
+      // 判断是否开启代码高亮 \ Determine whether to enable code highlighting
+      if (this.highlight) {
+        configs.renderingConfig.codeSyntaxHighlighting = true;
+      }
+
+      // 设置是否渲染输入的html \ Set whether to render the input html
+      marked.setOptions({ sanitize: this.sanitize });
+
+      // 实例化编辑器 \ Instantiated editor
+      this.easymde = new EasyMDE(configs);
+
+      // 添加自定义 previewClass \ Add a custom previewClass
+      const className = this.previewClass || '';
+      this.addPreviewClass(className);
+
+      // 绑定事件 \ Binding event
+      this.bindingEvents();
+    },
+    bindingEvents() {
+      this.easymde.codemirror.on('change', () => {
+        this.$emit('input', this.easymde.value());
+      });
+    },
+    addPreviewClass(className) {
+      const wrapper = this.easymde.codemirror.getWrapperElement();
+      const preview = document.createElement('div');
+      wrapper.nextSibling.className += ` ${className}`;
+      preview.className = `editor-preview ${className}`;
+      wrapper.appendChild(preview);
+    },
+  },
+  destroyed() {
+    this.easymde = null;
+  },
+  watch: {
+    value(val) {
+      if (val === this.easymde.value()) return;
+      this.easymde.value(val);
+    },
+  },
+};
 </script>
 
 <style>
