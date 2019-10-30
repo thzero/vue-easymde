@@ -25,16 +25,16 @@
   "repository": "github:NikulinIlya/vue-easymde",
   "license": "MIT",
   "dependencies": {
-    "easymde": "^2.7.0",
+    "easymde": "^2.8.0",
     "marked": "^0.7.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-eslint": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
+    "@vue/cli-plugin-babel": "^4.0.5",
+    "@vue/cli-plugin-eslint": "^4.0.5",
+    "@vue/cli-service": "^4.0.5",
     "@vue/eslint-config-airbnb": "^4.0.1",
-    "babel-eslint": "^10.0.2",
-    "eslint": "^6.1.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
     "eslint-plugin-vue": "^5.2.3",
     "vue-template-compiler": "^2.6.10"
   }
