@@ -161,3 +161,5 @@ vue-easymde is open source and released under the MIT Licence.
 Copyright (c) 2018 F-loat
 
 Copyright (c) 2019 Ilya Nikulin
+
+Copyright (c) 2020 thZero

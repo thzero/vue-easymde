@@ -161,3 +161,5 @@ vue-easymde выпущен с открытым исходным кодом и п
 Copyright (c) 2018 F-loat
 
 Copyright (c) 2019 Ilya Nikulin
+
+Copyright (c) 2020 thZero
