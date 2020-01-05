@@ -1,117 +1,165 @@
 <template>
   <div class="vue-easymde">
-    <textarea :name="name"></textarea>
+    <textarea
+      class="vue-easymde-textarea"
+      :name="name"
+      :value="modelVal"
+      @input="handleInput($event.target.value)"
+    />
   </div>
 </template>
 
 <script>
 // eslint-disable-next-line import/extensions
-import EasyMDE from 'easymde';
+import EasyMDE from 'easymde'
 // eslint-disable-next-line import/extensions
-import marked from 'marked';
+import marked from 'marked'
+
+import 'easymde/dist/easymde.min.css'
 
 export default {
   name: 'vue-easymde',
   props: {
-    value: String,
-    name: String,
-    previewClass: String,
+    value: {
+      type: String,
+      default: ''
+    },
     autoinit: {
       type: Boolean,
       default() {
-        return true;
-      },
-    },
-    highlight: {
-      type: Boolean,
-      default() {
-        return false;
-      },
-    },
-    sanitize: {
-      type: Boolean,
-      default() {
-        return false;
-      },
+        return true
+      }
     },
     configs: {
       type: Object,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
+    highlight: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    previewClass: {
+      type: String,
+      default: ''
+    },
+    previewRender: {
+      type: Function,
+      default: null
+    },
+    sanitize: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    },
+    toolbar: {
+      type: Array,
+      default: null
+    },
+    toolbarAdditionalButtons: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data: () => ({
+    modelVal: ''
+  }),
+  watch: {
+    value(val) {
+      if (this.isValueUpdateFromInner) {
+        this.isValueUpdateFromInner = false
+        return
+      }
+
+      this.easymde.value(val)
+      this.modelVal = val
+    }
+  },
+  deactivated() {
+    const editor = this.easymde
+    if (!editor)
+      return
+
+    const isFullScreen = editor.codemirror.getOption("fullScreen")
+    if (isFullScreen)
+      editor.toggleFullScreen()
+  },
+  destroyed() {
+    this.easymde = null
   },
   mounted() {
-    if (this.autoinit) this.initialize();
-  },
-  activated() {
-    const editor = this.easymde;
-    if (!editor) return;
-    const isActive = editor.isSideBySideActive() || editor.isPreviewActive();
-    if (isActive) editor.toggleFullScreen();
+    if (this.autoinit)
+      this.initialize()
   },
   methods: {
-    initialize() {
-      const configs = Object.assign({
-        element: this.$el.firstElementChild,
-        initialValue: this.value,
-        renderingConfig: {},
-      }, this.configs);
-
-      // 同步 value 和 initialValue 的值 \ Synchronize the values of value and initialValue
-      if (configs.initialValue) {
-        this.$emit('input', configs.initialValue);
-      }
-
-      // 判断是否开启代码高亮 \ Determine whether to enable code highlighting
-      if (this.highlight) {
-        configs.renderingConfig.codeSyntaxHighlighting = true;
-      }
-
-      // 设置是否渲染输入的html \ Set whether to render the input html
-      marked.setOptions({ sanitize: this.sanitize });
-
-      // 实例化编辑器 \ Instantiated editor
-      this.easymde = new EasyMDE(configs);
-
-      // 添加自定义 previewClass \ Add a custom previewClass
-      const className = this.previewClass || '';
-      this.addPreviewClass(className);
-
-      // 绑定事件 \ Binding event
-      this.bindingEvents();
+    addPreviewClass(className) {
+      const wrapper = this.easymde.codemirror.getWrapperElement()
+      const preview = document.createElement('div')
+      wrapper.nextSibling.className += ` ${className}`
+      preview.className = `editor-preview ${className}`
+      wrapper.appendChild(preview)
     },
     bindingEvents() {
       this.easymde.codemirror.on('change', () => {
-        this.$emit('input', this.easymde.value());
-      });
+        const val = this.easymde.value()
+        this.handleInput(val)
+      })
     },
-    addPreviewClass(className) {
-      const wrapper = this.easymde.codemirror.getWrapperElement();
-      const preview = document.createElement('div');
-      wrapper.nextSibling.className += ` ${className}`;
-      preview.className = `editor-preview ${className}`;
-      wrapper.appendChild(preview);
+    handleInput(val) {
+      this.isValueUpdateFromInner = true
+      this.$emit('input', val)
     },
-  },
-  destroyed() {
-    this.easymde = null;
-  },
-  watch: {
-    value(val) {
-      if (val === this.easymde.value()) return;
-      this.easymde.value(val);
-    },
-  },
-};
+    initialize() {
+      const configs = Object.assign(
+        {
+          autoDownloadFontAwesome: true,
+          element: this.$el.firstElementChild,
+          initialValue: this.value,
+          previewRender: this.previewRender,
+          renderingConfig: {}
+        },
+        this.configs
+      )
+
+      if (configs.initialValue)
+        this.$emit('input', configs.initialValue)
+
+      if (this.highlight)
+        configs.renderingConfig.codeSyntaxHighlighting = true
+
+      configs.toolbar = this.toolbar
+      configs.toolbarAdditionalButtons = this.toolbarAdditionalButtons
+
+      marked.setOptions({ sanitize: this.sanitize })
+
+      this.easymde = new EasyMDE(configs)
+
+      const className = this.previewClass || ''
+      this.addPreviewClass(className)
+      this.bindingEvents()
+    }
+  }
+}
 </script>
 
 <style>
-  .vue-easymde .markdown-body {
-    padding: 0.5em
-  }
+.vue-easymde .markdown-body {
+  padding: 0.5em;
+}
+.vue-easymde .editor-preview-active,
+.vue-easymde .editor-preview-active-side {
+  display: block;
+}
 
-  .vue-easymde .editor-preview-active, .vue-easymde .editor-preview-active-side {
-    display: block;
-  }
+.editor-toolbar {
+  color: black;
+}
 </style>
